@@ -40,7 +40,7 @@ def send_verification_email(email: str, first_name, code: str):
                 },
             },
         },
-        headers={"Authorization": f"Bearer {os.getenv("PLUNK_SECRET_KEY")}"},
+        headers={"Authorization": f"Bearer {os.getenv('PLUNK_SECRET_KEY')}"},
     )
     if response.status_code == 200:
         logger.info(f"Email sent: { response.json()}")
