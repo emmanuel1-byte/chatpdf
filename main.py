@@ -8,7 +8,18 @@ from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 
 limiter = Limiter(key_func=get_remote_address, default_limits=["10/minute"])
-app = FastAPI()
+app = FastAPI(
+    title="ChatPDF API",
+    summary=" A powerful API for uploading PDF documents and interacting with their content through natural language chat. Supports authentication, real-time communication, and multi-user isolation using vector search and LLMs",
+    servers=[
+        # {"url": "https://api.kennapartners.com", "description": "Production server"},
+        {
+            "url": "https://chatpdf-9ih9.onrender.com/",
+            "description": "Staging server",
+        },
+        {"url": "http://localhost:8080", "description": "Local development server"},
+    ],
+)
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
