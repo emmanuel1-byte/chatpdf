@@ -1,7 +1,11 @@
 from fastapi import APIRouter, Path, UploadFile, Depends, WebSocket, WebSocketDisconnect
 from fastapi.responses import JSONResponse
 from typing import Annotated
-from ...dependencies import FileValidator, get_current_user, get_current_user_for_websocket
+from ...dependencies import (
+    FileValidator,
+    get_current_user,
+    get_current_user_for_websocket,
+)
 from ...helpers import load_document, split_doc, WebsocketConnectionManager
 from ...services import vector_store, graph
 from ...utils import logger, connect_to_database
@@ -24,7 +28,7 @@ def upload_pdf(
     splits = split_doc(docs)
 
     doc_id = str(uuid4())
-    user_id = current_user.model_dump(mode="json").get("id")
+    user_id = str(current_user.id)
 
     for doc in splits:
         doc.metadata.update({"user_id": user_id, "doc_id": doc_id})
@@ -34,12 +38,9 @@ def upload_pdf(
     )
 
     return JSONResponse(
-        content={
-            "message": f"Successfully uploaded document {doc_id} for user {user_id}"
-        },
+        content={"data": {"doc_id": doc_id}},
         status_code=201,
     )
-
 
 
 manager = WebsocketConnectionManager()
@@ -59,7 +60,7 @@ async def websocket_endpoint(
                 {
                     "question": data,
                     "doc_id": doc_id,
-                    "user_id": current_user.model_dump(mode="json").get("id"),
+                    "user_id": str(current_user.id),
                 },
                 stream_mode="messages",
             ):

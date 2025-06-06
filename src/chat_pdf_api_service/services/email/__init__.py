@@ -1,1 +1,1 @@
-from .plunk import send_verification_email
+from .plunk import send_verification_email, send_password_reset_email
