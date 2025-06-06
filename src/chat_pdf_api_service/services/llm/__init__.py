@@ -1,1 +1,1 @@
-from .nlp import graph
+from .gemini import graph

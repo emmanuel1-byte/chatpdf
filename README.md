@@ -44,7 +44,7 @@ ChatPDF is an intelligent API that allows users to upload PDF documents and enga
 1. **Clone the repository**:
 
 ```bash
-git clone https://github.com/yourusername/chatpdf.git
+git clone https://github.com/emmanuel1-byte/chatpdf.git
 cd chatpdf
 ```
 
