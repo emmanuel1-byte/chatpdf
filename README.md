@@ -75,7 +75,7 @@ JWT_SECRET=
 5. **Run the application**:
 
 ```bash
-uvicorn app.main:app --reload
+fastapi run
 ```
 ---
 
