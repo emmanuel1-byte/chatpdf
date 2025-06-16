@@ -122,7 +122,8 @@ async def login(
     return JSONResponse(
         content={
             "data": {
-                "token": {"access_token": access_token, "refresh_token": refresh_token}
+                "user": user.model_dump(mode="json", exclude="password"),
+                "token": {"access_token": access_token, "refresh_token": refresh_token},
             }
         },
         status_code=200,
