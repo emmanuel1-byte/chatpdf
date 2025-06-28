@@ -1,1 +1,1 @@
-from .qdrant import vector_store
+from .qdrant import vector_store, client

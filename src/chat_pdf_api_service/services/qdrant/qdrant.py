@@ -1,6 +1,6 @@
 from langchain_qdrant import QdrantVectorStore
 from qdrant_client import QdrantClient
-from qdrant_client.models import PayloadSchemaType, VectorParams, Distance
+from qdrant_client.models import PayloadSchemaType
 import getpass
 import os
 from dotenv import load_dotenv

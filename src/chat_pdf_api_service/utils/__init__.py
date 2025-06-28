@@ -1,2 +1,2 @@
 from .logger import logger
-from .database import connect_to_database
+from ..helpers.database import connect_to_database

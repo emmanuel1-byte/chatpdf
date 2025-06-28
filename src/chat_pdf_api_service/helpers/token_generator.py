@@ -1,5 +1,8 @@
 import jwt
 import os
+import secrets
+import string
+import random
 from dotenv import load_dotenv
 import datetime
 from datetime import timezone
@@ -26,3 +29,8 @@ def generate_tokens(user_id: str):
     )
 
     return (access_token, refresh_token)
+
+
+def create_shareable_token(length=6):
+    characters = string.ascii_letters + string.digits
+    return "".join(secrets.choice(characters) for _ in range(length))
