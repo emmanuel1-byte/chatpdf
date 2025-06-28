@@ -9,7 +9,6 @@ from fastapi import (
 )
 from fastapi.responses import JSONResponse
 from typing import Annotated
-from qdrant_client.models import Filter, FieldCondition, MatchValue
 from qdrant_client.http import models
 from ...dependencies import (
     FileValidator,
