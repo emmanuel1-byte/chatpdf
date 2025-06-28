@@ -7,7 +7,7 @@ from beanie import init_beanie
 load_dotenv()
 import os
 
-from .logger import logger
+from ..utils.logger import logger
 
 
 """
@@ -21,12 +21,12 @@ Raises:
     Exception: For any other exceptions that may occur during the connection process.
 """
 async def connect_to_database():
-    from ..modules import User
+    from ..modules import User, Chat
 
     try:
         client = AsyncIOMotorClient(os.getenv("DATABASE_URI"))
         await init_beanie(
-            database=client.chatPDF, document_models=[User]
+            database=client.chatPDF, document_models=[User, Chat]
         )
         logger.info("Database connected")
 
