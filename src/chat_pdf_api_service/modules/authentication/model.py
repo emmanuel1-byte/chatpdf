@@ -22,11 +22,11 @@ class User(Document):
         name = "users"
 
     @before_event(Insert)
-    def set_created_at(self):
+    def set_timestamp_and_hash_password(self):
         self.created_at = datetime.now(timezone.utc)
         self.updated_at = datetime.now(timezone.utc)
         self.password = bcrypt.hashpw(self.password.encode(), bcrypt.gensalt()).decode()
 
     @before_event(Replace, Save)
-    def set_updated_at(self):
+    def update_timestamp(self):
         self.updated_at = datetime.now(timezone.utc)
