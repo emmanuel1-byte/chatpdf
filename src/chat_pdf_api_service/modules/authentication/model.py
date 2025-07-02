@@ -15,6 +15,7 @@ class User(Document):
     password: str
     verified: bool = False
     OTP_data: Optional[OTPData] = None
+    apkv: int = 1
     created_at: datetime = None
     updated_at: datetime = None
 
